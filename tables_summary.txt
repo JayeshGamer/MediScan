@@ -1,0 +1,74 @@
+=== TABLE 0 (Rows: 1, Cols: 1) ===
+  Row 0: Algorithm 1: Dual-path attention classification with Grad-CAM 1: Input: image I, model M, threshold τ (binary models only) 2: X ← Normalize(Resize(I, 224, 224)) 3: F_A ← ResBlock3x3(X);  F_B ← ResBlock5x5(X) 4: F_fused ← LeakyReLU(BN(Conv1x1(Concat(F_A, F_B)))) 5: F′ ← ChannelAttention(F_fused) ⊗ F_fused 6: F″ ← SpatialAttention(F′) ⊗ F′ 7: F_ref ← Refine(F″) 8: z ← [GAP(F_ref) ∥ GMP(F_ref)];  p ← Softmax(MLP(z)) 9: ŷ ← argmax(p)  (TumorNet)  or  [p₊ ≥ τ]  (binary models) 10: α_k ← mean over (i,j) of ∂s_ŷ/∂F_ref,k(i,j);  H ← ReLU(Σ_k α_k F_ref,k) 11: H_ov ← Overlay(I, Upsample(Normalize(H)), 0.50) 12: return ŷ, p, H_ov
+
+=== TABLE 1 (Rows: 1, Cols: 1) ===
+  Row 0: Algorithm 2: Training with class-balanced sampling 1: Input: dataset D = {(Xᵢ, yᵢ)}, model M, epochs E 2: w_c ← 1 / N_c for each class c  (inverse class frequency) 3: S ← WeightedRandomSampler(w_{yᵢ});  loader ← DataLoader(D, batch 32, S) 4: opt ← AdamW(lr 3e-4, weight decay 1e-4);  sched ← CosineAnnealingLR(T_max = E, η_min = 1e-6) 5: task loss: label-smoothed cross-entropy (smoothing 0.08) for TumorNet;    focal loss [63] (γ = 2.0, α = 0.60) with label smoothing 0.05 for PneumoNet;    GastroNet: [AUTHORS: state the loss actually used] 6: for epoch = 1..E: for each batch (X_b, y_b): loss ← L(M(X_b), y_b); backprop; opt.step() 7:    sched.step();  keep the checkpoint with the best validation score 8: return best checkpoint M*
+
+=== TABLE 2 (Rows: 4, Cols: 6) ===
+  Row 0: Module | Modality | Classes | Parameters | Epochs run | Best epoch
+  Row 1: TumorNet | Brain MRI | 4 | 14,912,870 | 16 | 15
+  Row 2: PneumoNet | Chest X-ray | 2 | 14,912,356 | 20 | 19
+  Row 3: GastroNet | Endoscopy | 2 | 14,912,356 | 22 | 20
+
+=== TABLE 3 (Rows: 1, Cols: 2) ===
+  Row 0: Fig. 6. TumorNet confusion matrix on the 1,600-scan test set (400 per class). | Fig. 7. One-vs-rest ROC curves for TumorNet (macro AUC 0.987; glioma AUC 0.956).
+
+=== TABLE 4 (Rows: 4, Cols: 9) ===
+  Row 0: Model | Modality | Classes | Optimal τ | Train acc. | Val. acc. | Val. loss | Val. macro-F1 | Val. AUC
+  Row 1: TumorNet | Brain MRI | 4 | N/A | 97.73% | 98.69% | 0.0793 | 98.69% | >0.999
+  Row 2: PneumoNet | Chest X-ray | 2 | 0.780 | 97.77% | 95.92% | 0.1361 | 95.84% | 0.9984
+  Row 3: GastroNet | Endoscopy | 2 | 0.580 | 95.78% | 96.77% | 0.1755 | 96.71% | 0.9933
+
+=== TABLE 5 (Rows: 4, Cols: 8) ===
+  Row 0: Model (n) | τ | Accuracy | Sensitivity | Specificity | Precision | F1 | ROC-AUC
+  Row 1: TumorNet (1,600) | argmax | 94.94% [93.8, 95.9] | 94.94% (macro recall) | 98.31% (macro) | 95.24% (macro) | 94.84% (macro) | 0.9874 (OvR)
+  Row 2: PneumoNet (624) | 0.780 | 90.06% [87.5, 92.2] | 90.00% [86.6, 92.6] | 90.17% [85.7, 93.4] | 93.85% | 91.88% | 0.9605
+  Row 3: GastroNet (711) | 0.580 | 96.06% [94.4, 97.3] | 94.49% [90.8, 96.8] | 96.84% [94.9, 98.1] | 93.70% | 94.09% | 0.9906
+
+=== TABLE 6 (Rows: 6, Cols: 6) ===
+  Row 0: Class | Support | Precision | Recall [95% CI] | F1 | Specificity
+  Row 1: Glioma | 400 | 99.10% | 83.00% [79.0, 86.4] | 90.34% | 99.75%
+  Row 2: Meningioma | 400 | 89.86% | 97.50% [95.5, 98.6] | 93.53% | 96.33%
+  Row 3: No tumor | 400 | 93.24% | 100.00% [99.0, 100.0] | 96.50% | 97.58%
+  Row 4: Pituitary adenoma | 400 | 98.76% | 99.25% [97.8, 99.7] | 99.00% | 99.58%
+  Row 5: Macro average | 1,600 | 95.24% | 94.94% | 94.84% | 98.31%
+
+=== TABLE 7 (Rows: 1, Cols: 2) ===
+  Row 0: Fig. 10. PneumoNet confusion matrix on 624 test radiographs at τ = 0.780. | Fig. 11. ROC curve for PneumoNet (test AUC 0.9605).
+
+=== TABLE 8 (Rows: 1, Cols: 2) ===
+  Row 0: Fig. 14. GastroNet confusion matrix on 711 test images at τ = 0.580. | Fig. 15. ROC curve for GastroNet (test AUC 0.9906).
+
+=== TABLE 9 (Rows: 13, Cols: 6) ===
+  Row 0: Domain | Study | Architecture | Classes | Reported metric | Explainability
+  Row 1: Brain MRI | Noreen et al. [7] | DenseNet201 + InceptionV3 | 3 | Acc: 94.34% | None
+  Row 2: Brain MRI | Rizwan et al. [14] | Custom deep CNN | 3 | Acc: 95.40% | None
+  Row 3: Brain MRI | Rehman et al. [28] | Efficient deep CNN | 3 | Acc: 96.56% | None
+  Row 4: Brain MRI | MediScan (TumorNet) | DualPathNet + CBAM | 4 | Test acc: 94.94%, F1: 94.84% | Grad-CAM
+  Row 5: Pediatric CXR | Sharma & Guleria [4] | Standard CNN (VGG-16) | 2 | Acc: 92.80% | None
+  Row 6: Pediatric CXR | Ali et al. [5] | EfficientNetV2L | 2 | Acc: 94.60% | None
+  Row 7: Pediatric CXR | Munir et al. [19] | PneuX-Net | 2 | Acc: 95.10%, AUC: 0.987 | Heatmaps
+  Row 8: Pediatric CXR | MediScan (PneumoNet) | DualPathNet + CBAM | 2 | Test acc: 90.06%, AUC: 0.9605 | Grad-CAM
+  Row 9: Endoscopy | Sun et al. [3] | Custom endoscopic CNN | 2 | Acc: 92.40% | None
+  Row 10: Endoscopy | Hatami et al. [8] | ResNet-50 transfer | 2 | Acc: 93.80% | None
+  Row 11: Endoscopy | Olimboyev et al. [9] | Gastro-AI attention model | 2 | Acc: 95.80% | Saliency
+  Row 12: Endoscopy | MediScan (GastroNet) | DualPathNet + CBAM | 2 | Test acc: 96.06%, AUC: 0.9906 | Grad-CAM
+
+=== TABLE 10 (Rows: 7, Cols: 7) ===
+  Row 0: Model | Params | GFLOPs | CPU ms/img | Brain MRI test acc. | Pneumonia test acc. | Gastro test acc.
+  Row 1: ResNet-18 (pretrained) | 11.7M | [TBD] | [TBD] | [TBD] | [TBD] | [TBD]
+  Row 2: ResNet-50 (pretrained) | 25.6M | [TBD] | [TBD] | [TBD] | [TBD] | [TBD]
+  Row 3: EfficientNet-B0 (pretrained) | 5.3M | [TBD] | [TBD] | [TBD] | [TBD] | [TBD]
+  Row 4: DenseNet-121 (pretrained) | 8.0M | [TBD] | [TBD] | [TBD] | [TBD] | [TBD]
+  Row 5: MobileNetV3-Large (pretrained) | 5.4M | [TBD] | [TBD] | [TBD] | [TBD] | [TBD]
+  Row 6: DualPathNet (ours, from scratch) | 14.91M | [TBD] | [TBD] | 94.94% | 90.06% | 96.06%
+
+=== TABLE 11 (Rows: 7, Cols: 5) ===
+  Row 0: Variant | Params | Brain MRI acc. | Pneumonia acc. | Gastro acc.
+  Row 1: Full DualPathNet (single run) | 14.91M | 94.94% | 90.06% | 96.06%
+  Row 2: 3×3 branch only | [TBD] | [TBD] | [TBD] | [TBD]
+  Row 3: 5×5 branch only | [TBD] | [TBD] | [TBD] | [TBD]
+  Row 4: Without CBAM | [TBD] | [TBD] | [TBD] | [TBD]
+  Row 5: GAP only (no GMP) | [TBD] | [TBD] | [TBD] | [TBD]
+  Row 6: Without residual skip | [TBD] | [TBD] | [TBD] | [TBD]
+

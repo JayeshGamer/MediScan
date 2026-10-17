@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net">
+  <diagram name="DL Architecture Taxonomy" id="taxonomy">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Title -->
+        <mxCell id="title" value="&lt;b&gt;Taxonomy of Deep Learning Architectures Across Three Medical Imaging Domains&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;fontSize=14;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="150" y="10" width="800" height="30" as="geometry"/>
+        </mxCell>
+
+        <!-- Root node -->
+        <mxCell id="root" value="&lt;b&gt;Deep Learning&lt;br&gt;Architectures&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#333333;fontColor=#333333;fontSize=11;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="440" y="55" width="160" height="45" as="geometry"/>
+        </mxCell>
+
+        <!-- Level 1: Architecture families -->
+        <mxCell id="cnn" value="&lt;b&gt;CNN Classifiers&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontSize=10;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="30" y="150" width="120" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="unet" value="&lt;b&gt;U-Net Variants&lt;/b&gt;&lt;br&gt;(Segmentation)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontSize=10;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="180" y="150" width="130" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="objdet" value="&lt;b&gt;Object Detection&lt;/b&gt;&lt;br&gt;(YOLO)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontSize=10;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="340" y="150" width="130" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="ensemble" value="&lt;b&gt;Ensemble / Hybrid&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontSize=10;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="500" y="150" width="130" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="vit" value="&lt;b&gt;Vision Transformers&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontSize=10;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="660" y="150" width="130" height="35" as="geometry"/>
+        </mxCell>
+        <mxCell id="special" value="&lt;b&gt;Domain-Specific&lt;/b&gt;&lt;br&gt;Pre-training" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#333333;fontSize=10;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="820" y="150" width="130" height="35" as="geometry"/>
+        </mxCell>
+
+        <!-- Edges root to L1 -->
+        <mxCell id="e1" edge="1" source="root" target="cnn" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e2" edge="1" source="root" target="unet" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e3" edge="1" source="root" target="objdet" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e4" edge="1" source="root" target="ensemble" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e5" edge="1" source="root" target="vit" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="e6" edge="1" source="root" target="special" parent="1"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- CNN sub-architectures -->
+        <mxCell id="resnet" value="ResNet" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#666666;fontSize=9;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="5" y="220" width="70" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="vgg" value="VGG" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#666666;fontSize=9;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="80" y="220" width="70" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="densenet" value="DenseNet" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#666666;fontSize=9;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="5" y="250" width="70" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="effnet" value="EfficientNet" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#666666;fontSize=9;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="80" y="250" width="70" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="inception" value="Inception / Xception" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#666666;fontSize=9;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="30" y="280" width="100" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="ec1" edge="1" source="cnn" target="resnet" parent="1" style="strokeColor=#999999;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ec2" edge="1" source="cnn" target="vgg" parent="1" style="strokeColor=#999999;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ec3" edge="1" source="cnn" target="densenet" parent="1" style="strokeColor=#999999;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ec4" edge="1" source="cnn" target="effnet" parent="1" style="strokeColor=#999999;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ec5" edge="1" source="cnn" target="inception" parent="1" style="strokeColor=#999999;"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- U-Net sub -->
+        <mxCell id="unet_std" value="Standard U-Net" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#666666;fontSize=9;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="170" y="220" width="100" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="attn_unet" value="Attention U-Net" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#666666;fontSize=9;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="170" y="250" width="100" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="res_unet" value="Residual-Attn U-Net" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#666666;fontSize=9;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="170" y="280" width="110" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="effunet" value="EfficientNet-UNet" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#666666;fontSize=9;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="170" y="310" width="110" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="eu1" edge="1" source="unet" target="unet_std" parent="1" style="strokeColor=#999999;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="eu2" edge="1" source="unet" target="attn_unet" parent="1" style="strokeColor=#999999;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="eu3" edge="1" source="unet" target="res_unet" parent="1" style="strokeColor=#999999;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="eu4" edge="1" source="unet" target="effunet" parent="1" style="strokeColor=#999999;"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- YOLO sub -->
+        <mxCell id="yolo7" value="YOLOv7 + SE" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#666666;fontSize=9;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="340" y="220" width="90" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="yolo8" value="YOLOv8 + Attn" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#666666;fontSize=9;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="340" y="250" width="90" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="yolo5" value="YOLOv5" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#666666;fontSize=9;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="340" y="280" width="90" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="ey1" edge="1" source="objdet" target="yolo7" parent="1" style="strokeColor=#999999;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ey2" edge="1" source="objdet" target="yolo8" parent="1" style="strokeColor=#999999;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ey3" edge="1" source="objdet" target="yolo5" parent="1" style="strokeColor=#999999;"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- Ensemble sub -->
+        <mxCell id="ens1" value="ResNet50 +&lt;br&gt;EfficientNet-B7 [55]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#666666;fontSize=9;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="490" y="220" width="120" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="ens2" value="PneuX-Net&lt;br&gt;(RF+GNB+KNC) [35]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#666666;fontSize=9;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="490" y="255" width="120" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="ens3" value="CNN + ML Classifier&lt;br&gt;Hybrids [34][36]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#666666;fontSize=9;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="490" y="290" width="120" height="30" as="geometry"/>
+        </mxCell>
+        <mxCell id="ee1" edge="1" source="ensemble" target="ens1" parent="1" style="strokeColor=#999999;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ee2" edge="1" source="ensemble" target="ens2" parent="1" style="strokeColor=#999999;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ee3" edge="1" source="ensemble" target="ens3" parent="1" style="strokeColor=#999999;"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- ViT sub -->
+        <mxCell id="davit" value="DA ViT [37]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#666666;fontSize=9;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="665" y="220" width="100" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="swin" value="Swin Transformer [38]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#666666;fontSize=9;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="665" y="250" width="110" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="ev1" edge="1" source="vit" target="davit" parent="1" style="strokeColor=#999999;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="ev2" edge="1" source="vit" target="swin" parent="1" style="strokeColor=#999999;"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- Domain-specific -->
+        <mxCell id="gastrobase" value="Gastro-BaseNet [19]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#666666;fontSize=9;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="830" y="220" width="110" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="fedlearn" value="Federated Learning [39]" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#666666;fontSize=9;fontFamily=Times New Roman;" vertex="1" parent="1">
+          <mxGeometry x="830" y="250" width="115" height="25" as="geometry"/>
+        </mxCell>
+        <mxCell id="es1" edge="1" source="special" target="gastrobase" parent="1" style="strokeColor=#999999;"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="es2" edge="1" source="special" target="fedlearn" parent="1" style="strokeColor=#999999;"><mxGeometry relative="1" as="geometry"/></mxCell>
+
+        <!-- Domain tags at bottom -->
+        <mxCell id="dom_header" value="&lt;b&gt;Domain Applicability:&lt;/b&gt;" style="text;html=1;align=left;fontSize=10;fontFamily=Times New Roman;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="30" y="360" width="150" height="20" as="geometry"/>
+        </mxCell>
+
+        <!-- CNN domains -->
+        <mxCell id="cnn_dom" value="▪ Gastric  ▪ Pneumonia  ▪ Brain Tumor" style="text;html=1;align=center;fontSize=8;fontFamily=Times New Roman;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="5" y="310" width="155" height="18" as="geometry"/>
+        </mxCell>
+
+        <!-- YOLO domains -->
+        <mxCell id="yolo_dom" value="▪ Gastric  ▪ Brain Tumor" style="text;html=1;align=center;fontSize=8;fontFamily=Times New Roman;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="340" y="310" width="120" height="18" as="geometry"/>
+        </mxCell>
+
+        <!-- Unet domains -->
+        <mxCell id="unet_dom" value="▪ Gastric (minor)  ▪ Brain Tumor (primary)" style="text;html=1;align=center;fontSize=8;fontFamily=Times New Roman;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="160" y="340" width="180" height="18" as="geometry"/>
+        </mxCell>
+
+        <!-- Ensemble domains -->
+        <mxCell id="ens_dom" value="▪ Pneumonia  ▪ Brain Tumor" style="text;html=1;align=center;fontSize=8;fontFamily=Times New Roman;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="490" y="325" width="130" height="18" as="geometry"/>
+        </mxCell>
+
+        <!-- ViT domains -->
+        <mxCell id="vit_dom" value="▪ Pneumonia only" style="text;html=1;align=center;fontSize=8;fontFamily=Times New Roman;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="670" y="280" width="100" height="18" as="geometry"/>
+        </mxCell>
+
+        <!-- Special domains -->
+        <mxCell id="spec_dom" value="▪ Gastric [19]  ▪ Pneumonia [39]" style="text;html=1;align=center;fontSize=8;fontFamily=Times New Roman;fontColor=#555555;" vertex="1" parent="1">
+          <mxGeometry x="830" y="280" width="120" height="18" as="geometry"/>
+        </mxCell>
+
+        <!-- Legend -->
+        <mxCell id="leg1" value="" style="rounded=1;fillColor=#f5f5f5;strokeColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="30" y="385" width="18" height="12" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg1t" value="Category" style="text;html=1;fontSize=9;fontFamily=Times New Roman;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="52" y="382" width="60" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg2" value="" style="rounded=0;fillColor=#e6e6e6;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="120" y="385" width="18" height="12" as="geometry"/>
+        </mxCell>
+        <mxCell id="leg2t" value="Specific Model / Study" style="text;html=1;fontSize=9;fontFamily=Times New Roman;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="142" y="382" width="120" height="18" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

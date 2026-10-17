@@ -1,0 +1,99 @@
+# =============================================================================
+# MediScan AI — repository ignore rules
+#
+# Tracked: source code, docs, figures, paper sources and the three deployable
+#          *_best.pth weights the inference API loads.
+# Ignored: dependencies, datasets (multi-GB), extra experiment weights,
+#          secrets/local config and internal scratch folders.
+# See README.md -> "What is (and is not) in this repository".
+# =============================================================================
+
+# ---------------------------------------------------------------- Python -----
+__pycache__/
+*.py[cod]
+*.so
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# ------------------------------------------------------- Node / Next.js ------
+node_modules/
+.next/
+out/
+build/
+.vercel/
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --------------------------------------------- Secrets & local overrides -----
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# ------------------------------------------------------------- Datasets ------
+# Multi-GB medical imaging corpora. Contributors supply these locally;
+# the expected folder names and layout are documented in README.md.
+/Brain Tumor MRI Dataset/
+/chest_xray/
+/labeled-images/*
+!/labeled-images/image-labels.csv
+!/labeled-images/license.txt
+/data/
+/datasets/
+
+# --------------------------------------------------------- Model weights -----
+# api_server.py loads exactly these three files. Baseline, entry-6 and
+# quantized experiments stay local to keep the repository small.
+/checkpoints/*
+!/checkpoints/TumorNet_best.pth
+!/checkpoints/PneumoNet_best.pth
+!/checkpoints/GastroNet_best.pth
+!/checkpoints/README.md
+
+# ------------------------------------- Internal scratch / working folders -----
+/scratch/
+/clean_study/*
+!/clean_study/*.py
+!/clean_study/splits.json
+/.agents/
+/Research_Paper/
+
+# ------------------------------ Large or duplicate generated documents ------
+# The paper .tex source and figures are tracked; these are rebuildable or
+# byte-identical duplicates of what is already in the tree.
+/Claude_MediScan_revised.docx
+/Claude_MediScan_revised_v2.docx
+/MediScan_AI_Conference_Paper_v2_fixed.docx
+/conference_paper_v2.docx
+/conference_paper_v2_backup.docx
+/test_ieee_2col.docx
+/literature_review_with_diagrams.pdf
+
+# ------------------------------------------- Document render leftovers ------
+/_preview*/
+/_checks.json
+
+# ---------------------------------------------------- Working text dumps -----
+/scratch_docx_dump.txt
+/yellow_items.txt
+/yellow_paragraphs_detail.txt
+/_dump.txt
+/_dump.py
+/gradcam_smoke_*.jpg
+
+# --------------------------------------------------------------- OS noise ----
+.DS_Store
+Thumbs.db
+desktop.ini

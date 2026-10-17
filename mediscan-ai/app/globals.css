@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+:root {
+  --bg-canvas: #090d12;
+  --bg-panel: #0e141d;
+  --bg-inset: #070a0e;
+  --border-muted: #1c2633;
+  --border-active: #2b394d;
+  --text-primary: #e6edf5;
+  --text-secondary: #8b99a9;
+  --text-muted: #536173;
+  --accent-blue: #2d68f7;
+  --accent-blue-hover: #1f56df;
+  --signal-high: #e11d48;
+  --signal-med: #d97706;
+  --signal-low: #059669;
+}
+
+body {
+  background-color: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Console Workstation Surface */
+.console-panel {
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-muted);
+}
+
+.console-inset {
+  background-color: var(--bg-inset);
+  border: 1px solid var(--border-muted);
+}
+
+/* High-contrast image viewing lightboard */
+.lightboard {
+  background-color: #030507;
+  border: 1px solid #161f2b;
+}
+
+/* Subtle scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-canvas);
+}
+::-webkit-scrollbar-thumb {
+  background: #1e2836;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2b3a4e;
+}
+
+/* UI/UX Pro Max Clinical Lightboard Scanner */
+@keyframes scan-beam {
+  0% {
+    top: 0%;
+    opacity: 0.8;
+  }
+  50% {
+    top: 98%;
+    opacity: 1;
+  }
+  100% {
+    top: 0%;
+    opacity: 0.8;
+  }
+}
+
+.animate-scan-beam {
+  animation: scan-beam 2.4s ease-in-out infinite;
+}
+
+/* Modality Glow Signatures */
+.glow-brain {
+  box-shadow: 0 0 30px -5px rgba(99, 102, 241, 0.25), 0 0 10px -2px rgba(99, 102, 241, 0.15);
+}
+.glow-chest {
+  box-shadow: 0 0 30px -5px rgba(14, 165, 233, 0.25), 0 0 10px -2px rgba(14, 165, 233, 0.15);
+}
+.glow-gastro {
+  box-shadow: 0 0 30px -5px rgba(245, 158, 11, 0.25), 0 0 10px -2px rgba(245, 158, 11, 0.15);
+}
+.glow-auto {
+  box-shadow: 0 0 30px -5px rgba(37, 99, 235, 0.25), 0 0 10px -2px rgba(37, 99, 235, 0.15);
+}
+
+/* Accessibility: Visible Focus Rings */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+[tabindex="0"]:focus-visible {
+  outline: 2px solid #38bdf8 !important;
+  outline-offset: 2px !important;
+}
+

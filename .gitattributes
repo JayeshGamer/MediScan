@@ -1,0 +1,12 @@
+# Normalise text files to LF on commit; never let Git mangle binaries.
+* text=auto
+
+# Explicitly binary — these must never be line-ending converted
+*.pth   binary
+*.npz   binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.pdf   binary
+*.docx  binary
+*.ipynb text
