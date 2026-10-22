@@ -64,31 +64,13 @@ pnpm-debug.log*
 
 # ------------------------------------- Internal scratch / working folders -----
 /scratch/
-/clean_study/*
-!/clean_study/*.py
-!/clean_study/splits.json
 /.agents/
-/Research_Paper/
-
-# ------------------------------ Large or duplicate generated documents ------
-# The paper .tex source and figures are tracked; these are rebuildable or
-# byte-identical duplicates of what is already in the tree.
-/Claude_MediScan_revised.docx
-/Claude_MediScan_revised_v2.docx
-/MediScan_AI_Conference_Paper_v2_fixed.docx
-/conference_paper_v2.docx
-/conference_paper_v2_backup.docx
-/test_ieee_2col.docx
-/literature_review_with_diagrams.pdf
 
 # ------------------------------------------- Document render leftovers ------
 /_preview*/
 /_checks.json
 
 # ---------------------------------------------------- Working text dumps -----
-/scratch_docx_dump.txt
-/yellow_items.txt
-/yellow_paragraphs_detail.txt
 /_dump.txt
 /_dump.py
 /gradcam_smoke_*.jpg
