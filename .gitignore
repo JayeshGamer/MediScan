@@ -60,7 +60,6 @@ pnpm-debug.log*
 !/checkpoints/TumorNet_best.pth
 !/checkpoints/PneumoNet_best.pth
 !/checkpoints/GastroNet_best.pth
-!/checkpoints/README.md
 
 # ------------------------------------- Internal scratch / working folders -----
 /scratch/
