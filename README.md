@@ -23,7 +23,6 @@ backend and a Next.js web interface.
 - [Datasets](#datasets)
 - [Model weights](#model-weights)
 - [Training and evaluation](#training-and-evaluation)
-- [The paper](#the-paper)
 - [What is (and is not) in this repository](#what-is-and-is-not-in-this-repository)
 - [Troubleshooting](#troubleshooting)
 - [License](#license)
@@ -72,13 +71,6 @@ than a naive 0.5 cut-off; they are stored inside each checkpoint.
 │
 ├── checkpoints/                 # The three deployable *_best.pth weights
 ├── results/                     # Evaluation figures (ROC, curves, confusion matrices, Grad-CAM)
-├── paper_figures/               # Publication-ready figure panels (PNG + PDF)
-├── diagrams/                    # Literature-review diagrams
-│
-├── conference_paper_v2.tex      # Paper source (LaTeX)
-├── MediScan_AI_IEEE_Conference_Paper_Final.docx
-├── MediScan_AI_Models.ipynb     # Exploratory notebook
-│
 ├── mediscan-ai/                 # Next.js 16 web application
 │   ├── app/ components/ lib/ design-system/
 │   ├── package.json
@@ -232,21 +224,6 @@ Evaluation scripts accept `--checkpoint`, `--data_dir` and `--no_tta`, and write
 confusion matrices, ROC curves, training curves and Grad-CAM samples into
 `results/`.
 
-## The paper
-
-- `conference_paper_v2.tex` — LaTeX source (IEEE conference format)
-- `MediScan_AI_IEEE_Conference_Paper_Final.docx`, `MediScan_AI_Conference_Paper_v2.docx` — formatted manuscripts
-- `paper_figures/` — figure panels as PNG (for slides) and PDF (vector, for the paper)
-- `MediScan_AI_Models.ipynb` — exploratory notebook
-
-Rebuild helpers: `generate_ieee_paper.py`, `generate_latex.py`,
-`generate_paper_figures.py`, `build_paper_docx.py`, `build_full_ieee_paper.py`.
-These need extra tooling beyond the runtime:
-
-```bash
-pip install python-docx PyMuPDF nbformat nbconvert
-```
-
 ## What is (and is not) in this repository
 
 Nobody should have to clone 12 GB to read the code, so the following are
@@ -259,10 +236,8 @@ roughly 200 MB.
 | `mediscan-ai/node_modules/`, `.next/` | 0.6 GB | Recreate with `npm install` |
 | `labeled-images/`, `chest_xray/`, `Brain Tumor MRI Dataset/` | 6.3 GB | Public datasets; bring your own copy |
 | `*_baseline.pth`, `*_best_epoch6.pth`, `*_quantized.pth` | 400 MB | Experiment artifacts; regenerable |
-| `clean_study/` (`.npz`, split caches) | 36 MB | Internal audit/paper working files |
 | `scratch/`, `.agents/` | small | Local scratch and tooling |
 | `.env.local` | – | Local config — use `.env.example` |
-| Duplicate paper drafts, 18 MB figure PDF | ~28 MB | Rebuildable or byte-identical duplicates |
 
 Everything above stays on disk; deleting these rules locally will make them
 visible to Git again.
@@ -275,7 +250,6 @@ visible to Git again.
 | Frontend gets `ECONNREFUSED` | Backend not running, or `NEXT_PUBLIC_API_URL` points at the wrong port |
 | `RuntimeError: no trained model for modality` | That modality's `*_best.pth` is absent |
 | Torch install is huge / CUDA mismatch | Use the CPU index URL in [Backend](#1-backend) |
-| `ModuleNotFoundError: docx` | Paper scripts need `pip install python-docx` |
 
 ## License
 
