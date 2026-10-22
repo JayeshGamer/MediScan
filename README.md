@@ -70,7 +70,7 @@ than a naive 0.5 cut-off; they are stored inside each checkpoint.
 ├── benchmark_latency.py         # Inference latency benchmark
 │
 ├── checkpoints/                 # The three deployable *_best.pth weights
-├── results/                     # Evaluation figures (ROC, curves, confusion matrices, Grad-CAM)
+├── results/                     # Generated evaluation outputs (created after evaluation runs)
 ├── mediscan-ai/                 # Next.js 16 web application
 │   ├── app/ components/ lib/ design-system/
 │   ├── package.json
@@ -79,11 +79,6 @@ than a naive 0.5 cut-off; they are stored inside each checkpoint.
 ├── requirements.txt
 └── README.md
 ```
-
-Supporting documents worth reading: `CNN_ARCHITECTURE_EXPLAINED.md` (model
-internals), `CODE_WALKTHROUGH_GUIDE.md` (file-by-file tour),
-`MODEL_OVERVIEW_SIMPLE.md` (plain-language summary),
-`OPTIMIZING_PARAMETERS_README.md` (quantization) and `CHANGELOG.md`.
 
 ## Quick start
 
@@ -138,8 +133,8 @@ npm run build && npm start
 No server needed:
 
 ```bash
-python api_server.py --image results/live_test_chest.jpg --save-heatmap out.jpg
-python api_server.py --image results/live_test_brain.jpg --modality brain
+python api_server.py --image path/to/chest_xray_image.jpg --save-heatmap out.jpg
+python api_server.py --image path/to/brain_mri_image.jpg --modality brain
 ```
 
 | Flag | Default | Meaning |
@@ -164,7 +159,7 @@ threshold decision, severity, findings, recommendations and a
 
 ```bash
 curl -X POST http://127.0.0.1:8000/predict \
-  -F "image=@results/live_test_chest.jpg" \
+  -F "image=@path/to/chest_xray_image.jpg" \
   -F "modality=chest"
 ```
 
@@ -196,9 +191,8 @@ python train_gastronet.py  --data_dir labeled-images
 
 `checkpoints/` ships the three files the API loads — `TumorNet_best.pth`,
 `PneumoNet_best.pth`, `GastroNet_best.pth` (~57 MB each) — so a clone can run
-inference immediately. Baseline, epoch-6 and INT8 variants stay local. See
-[`checkpoints/README.md`](checkpoints/README.md) for the checkpoint format and
-how to regenerate each file.
+inference immediately. Baseline, epoch-6 and INT8 variants stay local and can
+be regenerated from the training scripts.
 
 ## Training and evaluation
 
